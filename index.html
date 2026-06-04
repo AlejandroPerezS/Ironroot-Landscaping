@@ -704,7 +704,7 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
         <div class="contact-row">
           <span class="c-icon">📞</span>
           <div class="c-text">
-            <strong>Phone Call / SMS text</strong>
+            <strong>Phone Call / Preferred Channel</strong>
             <a href="tel:7808857119">780-885-7119</a>
           </div>
         </div>
@@ -727,34 +727,40 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
     </div>
     
     <div class="form-box">
-      <div id="est-form">
+      <div data-fs-error style="color:var(--red); font-size:0.85rem; margin-bottom:1rem; text-align:center; font-weight:600;"></div>
+
+      <form id="est-form">
         <h3>Request Estimate Form</h3>
         <p class="form-intro">Provide local project details below, and select your preferred callback message channel option.</p>
         
         <div class="form-row2">
           <div class="fg">
             <label for="fname">First Name</label>
-            <input type="text" id="fname" placeholder="John" required>
+            <input type="text" id="fname" name="firstName" placeholder="John" data-fs-field required>
+            <span data-fs-error="firstName" style="color:var(--red); font-size:0.72rem; margin-top:0.2rem; display:block;"></span>
           </div>
           <div class="fg">
             <label for="lname">Last Name</label>
-            <input type="text" id="lname" placeholder="Smith">
+            <input type="text" id="lname" name="lastName" placeholder="Smith" data-fs-field>
+            <span data-fs-error="lastName" style="color:var(--red); font-size:0.72rem; margin-top:0.2rem; display:block;"></span>
           </div>
         </div>
         
         <div class="fg">
           <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" placeholder="780-123-4567" required>
+          <input type="tel" id="phone" name="phone" placeholder="780-123-4567" data-fs-field required>
+          <span data-fs-error="phone" style="color:var(--red); font-size:0.72rem; margin-top:0.2rem; display:block;"></span>
         </div>
         
         <div class="fg">
           <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="john.smith@gmail.com">
+          <input type="email" id="email" name="email" placeholder="john.smith@gmail.com" data-fs-field>
+          <span data-fs-error="email" style="color:var(--red); font-size:0.72rem; margin-top:0.2rem; display:block;"></span>
         </div>
         
         <div class="fg">
           <label for="service">Primary Landscape Service Needed</label>
-          <select id="service">
+          <select id="service" name="service" data-fs-field>
             <option value="">-- Please choose an option --</option>
             <option value="Rock & Gravel Bed Construction">Decorative Rock & Gravel Bedding</option>
             <option value="Paving Stone Edging & Borders">Paving Stone Edging & Borders</option>
@@ -763,25 +769,26 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
             <option value="Full Landscape Property Revamp">Full Multi-Feature Overhaul</option>
             <option value="Other Landscape Feature Work">Other Custom Work</option>
           </select>
+          <span data-fs-error="service" style="color:var(--red); font-size:0.72rem; margin-top:0.2rem; display:block;"></span>
         </div>
         
         <div class="fg">
           <label for="msg">Project Details / Sizes / Scope</label>
-          <textarea id="msg" placeholder="Tell us briefly about dimensions, current yard problems, or style choices you prefer..."></textarea>
+          <textarea id="msg" name="message" placeholder="Tell us briefly about dimensions, current yard problems, or style choices you prefer..." data-fs-field required></textarea>
+          <span data-fs-error="message" style="color:var(--red); font-size:0.72rem; margin-top:0.2rem; display:block;"></span>
         </div>
         
         <label class="fg" style="display:block; margin-bottom:0.4rem;">Preferred Response Channels</label>
         <div class="contact-prefs">
-          <label class="pref-btn"><input type="checkbox" id="p-sms" checked> SMS Text</label>
-          <label class="pref-btn"><input type="checkbox" id="p-email"> Email Inbox</label>
-          <label class="pref-btn"><input type="checkbox" id="p-call"> Voice Call</label>
+          <label class="pref-btn"><input type="checkbox" name="preferences[]" value="Email" checked> Email Inbox</label>
+          <label class="pref-btn"><input type="checkbox" name="preferences[]" value="Call"> Voice Call</label>
         </div>
         
-        <button type="button" class="form-submit" onclick="handleEstimateSubmit()">Transmit Secure Inquiry</button>
+        <button type="submit" class="form-submit" data-fs-submit-btn>Transmit Secure Inquiry</button>
         <p class="form-note">🔒 Private communications. Data is only used to configure your quote.</p>
-      </div>
+      </form>
       
-      <div id="fs" class="form-success">
+      <div id="fs" class="form-success" data-fs-success>
         <div class="s-check">✓</div>
         <h4>Inquiry Processed!</h4>
         <p>Your specifications have been recorded. Our estimating representative will generate your target client setup file right away.</p>
@@ -825,39 +832,6 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
 </footer>
 
 <script>
-function handleEstimateSubmit() {
-  var fn = document.getElementById('fname').value.trim();
-  var ln = document.getElementById('lname').value.trim();
-  var ph = document.getElementById('phone').value.trim();
-  var em = document.getElementById('email').value.trim();
-  var svc = document.getElementById('service').value;
-  var msg = document.getElementById('msg').value.trim();
-  
-  if(!fn || !ph){
-    alert('Please complete your First Name and Contact Phone Number to properly issue a request quote.');
-    return;
-  }
-  
-  var bySMS = document.getElementById('p-sms').checked;
-  var byEmail = document.getElementById('p-email').checked;
-  
-  var prefs = [bySMS && 'SMS', byEmail && 'Email', document.getElementById('p-call').checked && 'Call'].filter(Boolean).join(', ') || 'Any';
-  var name = [fn, ln].filter(Boolean).join(' ');
-  
-  var smsBody = encodeURIComponent('Hi Ironroot! Free estimate request.\nName: '+name+'\nPhone: '+ph+(em?'\nEmail: '+em:'')+(svc?'\nService: '+svc:'')+(msg?'\nDetails: '+msg:'')+'\nContact via: '+prefs);
-  var subj = encodeURIComponent('Free Estimate Request — '+name);
-  var mailBody = encodeURIComponent('Name: '+name+'\r\nPhone: '+ph+'\r\nEmail: '+(em||'Not provided')+'\r\nService: '+(svc||'Not specified')+'\r\nContact via: '+prefs+'\r\n\r\nMessage:\r\n'+(msg||'None'));
-  
-  if(byEmail && em){
-    window.location.href = 'mailto:ironrootlandscaping@gmail.com?subject='+subj+'&body='+mailBody;
-  } else {
-    window.open('sms:7808857119?body='+smsBody, '_blank');
-  }
-  
-  document.getElementById('est-form').style.display = 'none';
-  document.getElementById('fs').style.display = 'block';
-}
-
 function toggleNav(btn) {
   var ul = document.querySelector('.nav-links');
   var isOpen = ul.classList.contains('nav-open');
@@ -870,7 +844,6 @@ function toggleNav(btn) {
   }
 }
 
-// Close mobile overlay on deep link click
 document.querySelectorAll('.nav-links a').forEach(function(link){
   link.addEventListener('click', function(){
     var ul = document.querySelector('.nav-links');
@@ -881,7 +854,12 @@ document.querySelectorAll('.nav-links a').forEach(function(link){
     }
   });
 });
+
+window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+formspree('initForm', { formElement: '#est-form', formId: 'mjgdvrdr' });
 </script>
+
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 </html>
