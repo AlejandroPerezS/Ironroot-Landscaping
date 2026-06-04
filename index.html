@@ -761,60 +761,64 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
       </div>
 
       <div class="form-box">
-        <h3>Request an Estimate</h3>
-        <p class="form-intro">Tell us about your yard and we&#39;ll put together a quote. All fields with a name and phone number are required.</p>
-        <div id="est-form">
-          <div class="form-row2">
-            <div class="fg">
-              <label>First Name *</label>
-              <input type="text" id="fn" placeholder="Jane" required>
-            </div>
-            <div class="fg">
-              <label>Last Name</label>
-              <input type="text" id="ln" placeholder="Smith">
-            </div>
+      <div id="est-form">
+        <h3>Request Estimate Form</h3>
+        <p class="form-intro">Provide local project details below, and select your preferred callback message channel option.</p>
+        
+        <div class="form-row2">
+          <div class="fg">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="John" required>
           </div>
           <div class="fg">
-            <label>Phone Number *</label>
-            <input type="tel" id="ph" placeholder="780-000-0000" required>
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Smith">
           </div>
-          <div class="fg">
-            <label>Email Address</label>
-            <input type="email" id="em" placeholder="jane@email.com">
-          </div>
-          <div class="fg">
-            <label>Service Needed</label>
-            <select id="svc">
-              <option value="" disabled selected>Select a service…</option>
-              <option>Sod Installation — New Lawn</option>
-              <option>Sod Patch Repair</option>
-              <option>Mulch Installation</option>
-              <option>Garden Bed Refresh</option>
-              <option>Yard Cleanup (Spring/Fall)</option>
-              <option>Gravel / Rock Spreading</option>
-              <option>Multiple Services</option>
-              <option>Other / Not Sure</option>
-            </select>
-          </div>
-          <div class="fg">
-            <label>Tell Us About Your Project</label>
-            <textarea id="msg" placeholder="Size of yard, specific areas, timeline, any questions…"></textarea>
-          </div>
-          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-600);margin-bottom:0.5rem">Best Way to Reach You</p>
-          <div class="contact-prefs" style="margin-bottom:1.25rem">
-            <label class="pref-btn"><input type="checkbox" id="p-sms" checked> 📱 SMS / Text</label>
-            <label class="pref-btn"><input type="checkbox" id="p-email"> 📧 Email</label>
-            <label class="pref-btn"><input type="checkbox" id="p-call"> 📞 Phone Call</label>
-          </div>
-          <button class="form-submit" onclick="submitForm()">Send My Estimate Request →</button>
-          <p class="form-note">We respond within a few hours. Your information is never shared.</p>
         </div>
-        <div class="form-success" id="fs">
-          <div class="s-check">✓</div>
-          <h4>Request Received!</h4>
-          <p>Thanks for reaching out. We&#39;ll get back to you soon with your free estimate.<br><br>
-          You can also text us directly at <a href="sms:7808857119" style="color:var(--green);font-weight:700">780-885-7119</a>.</p>
+        
+        <div class="fg">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="780-123-4567" required>
         </div>
+        
+        <div class="fg">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="john.smith@gmail.com">
+        </div>
+        
+        <div class="fg">
+          <label for="service">Primary Landscape Service Needed</label>
+          <select id="service">
+            <option value="">-- Please choose an option --</option>
+            <option value="Rock & Gravel Bed Construction">Decorative Rock & Gravel Bedding</option>
+            <option value="Paving Stone Edging & Borders">Paving Stone Edging & Borders</option>
+            <option value="Custom Patio Decking">Custom Patio Deck Build</option>
+            <option value="Grading & Foundation Soil Correction">Grading & Foundation Correction</option>
+            <option value="Full Landscape Property Revamp">Full Multi-Feature Overhaul</option>
+            <option value="Other Landscape Feature Work">Other Custom Work</option>
+          </select>
+        </div>
+        
+        <div class="fg">
+          <label for="msg">Project Details / Sizes / Scope</label>
+          <textarea id="msg" placeholder="Tell us briefly about dimensions, current yard problems, or style choices you prefer..."></textarea>
+        </div>
+        
+        <label class="fg" style="display:block; margin-bottom:0.4rem;">Preferred Response Channels</label>
+        <div class="contact-prefs">
+          <label class="pref-btn"><input type="checkbox" id="p-sms" checked> SMS Text</label>
+          <label class="pref-btn"><input type="checkbox" id="p-email"> Email Inbox</label>
+          <label class="pref-btn"><input type="checkbox" id="p-call"> Voice Call</label>
+        </div>
+        
+        <button type="button" class="form-submit" onclick="handleEstimateSubmit()">Transmit Secure Inquiry</button>
+        <p class="form-note">🔒 Private communications. Data is only used to configure your quote.</p>
+      </div>
+      
+      <div id="fs" class="form-success">
+        <div class="s-check">✓</div>
+        <h4>Inquiry Processed!</h4>
+        <p>Your specifications have been recorded. Our estimating representative will generate your target client setup file right away.</p>
       </div>
     </div>
   </div>
