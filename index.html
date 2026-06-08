@@ -7,50 +7,53 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
-<!-- EmailJS SDK -->
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --green:#1e412d;--green-dark:#1e412d;--green-light:#1e412d;
-  --green-pale:#e8f4e8;--yellow:#f5c842;--yellow-dark:#c9a000;
-  --gray-50:#f8f9f7;--gray-100:#eef0ec;--gray-200:#d4d9d0;
-  --gray-400:#8a9186;--gray-600:#4a5246;--gray-900:#1a1e18;
-  --white:#ffffff;
+  --green: #1a4329;       
+  --green-dark: #112e1c;
+  --green-light: #235c38;
+  --green-pale: #e9efe9;
+  --bg-cream: #f7f0df;     
+  --gray-50: #ebe8e1;      
+  --gray-100: #dfdad0;
+  --gray-200: #cfc9bc;
+  --gray-400: #857f72;
+  --gray-600: #4a463d;
+  --gray-900: #1c1a16;
+  --white: #ffffff;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Barlow',sans-serif;color:var(--gray-900);background:var(--white);line-height:1.6}
+body{font-family:'Barlow',sans-serif;color:var(--gray-900);background:var(--bg-cream);line-height:1.6}
 .topbar{background:var(--green-dark);color:rgba(255,255,255,0.85);font-size:0.82rem;padding:0.4rem 2rem;display:flex;align-items:center;justify-content:space-between;}
-.topbar a{color:var(--yellow);text-decoration:none;font-weight:600}
+.topbar a{color:var(--bg-cream);text-decoration:none;font-weight:600}
 .topbar-right{display:flex;gap:1.5rem;align-items:center}
-nav{background:var(--white);border-bottom:3px solid var(--green);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+nav{background:var(--bg-cream);border-bottom:3px solid var(--green);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
 .nav-brand{display:flex;align-items:center;gap:0.75rem;text-decoration:none;padding:1rem 0;}
-.nav-leaf{width:42px;height:42px;background:var(--green);border-radius:50% 50% 50% 0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
 .nav-wordmark{font-family:'Barlow Condensed',sans-serif;line-height:1;}
 .nav-wordmark-top{font-size:1.5rem;font-weight:800;letter-spacing:0.02em;color:var(--green-dark);display:block;text-transform:uppercase;}
 .nav-wordmark-sub{font-size:0.72rem;font-weight:600;letter-spacing:0.12em;color:var(--gray-400);text-transform:uppercase;display:block;}
 .nav-links{display:flex;list-style:none;gap:0}
 .nav-links a{display:block;padding:1.25rem 1.1rem;color:var(--gray-600);font-weight:600;font-size:0.88rem;text-decoration:none;letter-spacing:0.03em;text-transform:uppercase;border-bottom:3px solid transparent;margin-bottom:-3px;transition:color 0.18s,border-color 0.18s;}
 .nav-links a:hover{color:var(--green);border-bottom-color:var(--green)}
-.nav-cta{background:var(--yellow);color:var(--gray-900)!important;font-weight:700!important;padding:0.65rem 1.5rem!important;border-radius:3px;margin-left:1rem;border-bottom:none!important;font-size:0.88rem;white-space:nowrap;transition:background 0.18s!important;}
-.nav-cta:hover{background:var(--yellow-dark)!important;color:var(--white)!important;border-bottom:none!important}
+.nav-cta{background:var(--green);color:var(--bg-cream)!important;font-weight:700!important;padding:0.65rem 1.5rem!important;border-radius:3px;margin-left:1rem;border-bottom:none!important;font-size:0.88rem;white-space:nowrap;transition:background 0.18s!important;}
+.nav-cta:hover{background:var(--green-dark)!important;color:var(--white)!important;border-bottom:none!important}
 .hero{position:relative;min-height:560px;display:flex;align-items:center;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;background:#1a2e1a;}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:0.45;display:block;}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,30,14,0.88) 0%,rgba(14,30,14,0.5) 55%,rgba(14,30,14,0.1) 100%);}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:0.40;display:block;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,30,14,0.85) 0%,rgba(14,30,14,0.5) 55%,rgba(14,30,14,0.1) 100%);}
 .hero-content{position:relative;z-index:2;padding:4rem 2rem 4rem 4rem;max-width:620px;}
-.hero-badge{display:inline-flex;align-items:center;gap:0.4rem;background:var(--yellow);color:var(--gray-900);font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.75rem;border-radius:2px;margin-bottom:1.25rem;}
 .hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.8rem,5vw,4.2rem);font-weight:800;line-height:1;text-transform:uppercase;letter-spacing:0.01em;color:var(--white);margin-bottom:1rem;}
-.hero h1 span{color:var(--yellow)}
-.hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.8);line-height:1.65;margin-bottom:2rem;max-width:480px;}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.hero h1 span{color:var(--bg-cream)}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.85);line-height:1.65;margin-bottom:2rem;max-width:480px;}
+.hero-actions{display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center}
 .btn-hero{display:inline-flex;align-items:center;gap:0.5rem;background:var(--green);color:var(--white);font-weight:700;font-size:0.95rem;letter-spacing:0.04em;text-transform:uppercase;padding:0.85rem 1.75rem;border-radius:3px;text-decoration:none;border:2px solid var(--green);transition:background 0.18s,border-color 0.18s;}
 .btn-hero:hover{background:var(--green-light);border-color:var(--green-light)}
-.hero-phone{color:var(--yellow);font-weight:700;font-size:1.1rem;letter-spacing:0.03em;text-decoration:none;display:flex;align-items:center;gap:0.4rem;}
+.hero-phone{color:var(--bg-cream);font-weight:700;font-size:1.1rem;letter-spacing:0.03em;text-decoration:none;display:flex;align-items:center;gap:0.4rem;}
 .hero-phone:hover{color:var(--white)}
 .trust-strip{background:var(--green);padding:1rem 2rem;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;}
 .trust-item{display:flex;align-items:center;gap:0.6rem;color:var(--white);font-weight:600;font-size:0.88rem;letter-spacing:0.03em;text-transform:uppercase;}
-.trust-item span{font-size:1.1rem}
 .section{padding:5rem 2rem}
 .section-center{max-width:1140px;margin:0 auto}
 .section-label{font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.6rem;}
@@ -60,13 +63,166 @@ nav{background:var(--white);border-bottom:3px solid var(--green);padding:0 2rem;
 .section-body{font-size:1rem;color:var(--gray-600);max-width:540px;line-height:1.7}
 .services-section{background:var(--gray-50)}
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:3rem;}
-.service-card{background:var(--white);border:1px solid var(--gray-200);border-top:4px solid var(--green);border-radius:4px;padding:2rem 1.75rem;transition:box-shadow 0.2s,transform 0.2s;display:flex;flex-direction:column;gap:0.75rem;}
-.service-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.1);transform:translateY(-2px)}
-.service-icon{width:52px;height:52px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;}
+.service-card{background:var(--bg-cream);border:1px solid var(--gray-200);border-top:4px solid var(--green);border-radius:4px;padding:2rem 1.75rem;transition:box-shadow 0.2s,transform 0.2s;display:flex;flex-direction:column;gap:0.75rem;}
+.service-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.06);transform:translateY(-2px)}
+.service-icon{width:52px;height:52px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--green);}
+
+/* Updated CSS for Outline Line-Art Icons */
+.service-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pillar-icon2 svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .service-card h3{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:700;text-transform:uppercase;color:var(--gray-900);letter-spacing:0.02em;}
 .service-card p{font-size:0.9rem;color:var(--gray-600);line-height:1.6;flex:1}
 .service-link{font-size:0.82rem;font-weight:700;color:var(--green);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;display:flex;align-items:center;gap:0.3rem;margin-top:0.5rem;}
 .service-link:hover{color:var(--green-dark)}
+
+/* Brand Transformations Section (Before / After Showcase) */
+.transformations-section{background:var(--bg-cream)}
+.transform-showcase{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center;margin-top:3rem;}
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  user-select: none;
+}
+.slider-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.slider-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.img-before {
+  z-index: 1;
+}
+.img-after {
+  z-index: 2;
+  width: 50%; /* Initial state split half way */
+}
+.slider-img img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+/* Ensure the clipped after image retains proper scale alignment */
+.img-after img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.slider-handle {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: var(--white);
+  cursor: ew-resize;
+  transform: translateX(-50%);
+}
+.slider-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: var(--green);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  font-size: 0.8rem;
+  font-weight: 800;
+  pointer-events: none;
+}
+.badge-before, .badge-after {
+  position: absolute;
+  bottom: 1rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(28,26,22,0.85);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 3px;
+  z-index: 4;
+}
+.badge-before { left: 1rem; }
+.badge-after { right: 1rem; }
+
+.transform-side-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.transform-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  background: var(--gray-50);
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid var(--gray-200);
+}
+.transform-thumb {
+  position: relative;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.transform-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.transform-card-meta {
+  grid-column: span 2;
+  padding: 0.5rem 0.5rem 0.2rem;
+}
+.transform-card-meta h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  color: var(--gray-900);
+}
+.transform-card-meta p {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+}
+
 .photo-strip{display:grid;grid-template-columns:repeat(4,1fr);height:280px;gap:3px;}
 .photo-strip-cell{overflow:hidden;position:relative}
 .photo-strip-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s}
@@ -78,16 +234,16 @@ nav{background:var(--white);border-bottom:3px solid var(--green);padding:0 2rem;
 .about-img-tag{position:absolute;bottom:1.5rem;right:-1px;background:var(--green);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:0.6rem 1.25rem;}
 .pillars{display:flex;flex-direction:column;gap:1.25rem;margin-top:2rem}
 .pillar-row{display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 1.25rem;background:var(--gray-50);border-left:4px solid var(--green);border-radius:0 4px 4px 0;}
-.pillar-icon2{font-size:1.4rem;flex-shrink:0;margin-top:2px}
+.pillar-icon2{color:var(--green);display:flex;align-items:center;justify-content:center;margin-top:2px}
 .pillar-row h4{font-size:0.95rem;font-weight:700;color:var(--gray-900);margin-bottom:0.2rem}
 .pillar-row p{font-size:0.85rem;color:var(--gray-600);line-height:1.55}
 .cta-banner{background:var(--green-dark);padding:3.5rem 2rem;text-align:center;}
 .cta-banner h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;text-transform:uppercase;letter-spacing:0.02em;color:var(--white);margin-bottom:0.75rem;}
-.cta-banner h2 span{color:var(--yellow)}
+.cta-banner h2 span{color:var(--bg-cream)}
 .cta-banner p{font-size:1rem;color:rgba(255,255,255,0.7);margin-bottom:2rem}
 .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;align-items:center}
-.btn-cta{display:inline-flex;align-items:center;gap:0.5rem;background:var(--yellow);color:var(--gray-900);font-weight:700;font-size:0.95rem;letter-spacing:0.04em;text-transform:uppercase;padding:0.85rem 2rem;border-radius:3px;text-decoration:none;border:2px solid var(--yellow);transition:background 0.18s;}
-.btn-cta:hover{background:var(--yellow-dark);border-color:var(--yellow-dark);color:var(--white)}
+.btn-cta{display:inline-flex;align-items:center;gap:0.5rem;background:var(--green);color:var(--white);font-weight:700;font-size:0.95rem;letter-spacing:0.04em;text-transform:uppercase;padding:0.85rem 2rem;border-radius:3px;text-decoration:none;border:2px solid var(--green);transition:background 0.18s;}
+.btn-cta:hover{background:var(--green-light);border-color:var(--green-light)}
 .btn-cta-outline{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:var(--white);font-weight:700;font-size:0.95rem;letter-spacing:0.04em;text-transform:uppercase;padding:0.85rem 2rem;border-radius:3px;text-decoration:none;border:2px solid rgba(255,255,255,0.4);transition:border-color 0.18s;}
 .btn-cta-outline:hover{border-color:var(--white)}
 .gallery-section{background:var(--gray-50)}
@@ -98,47 +254,41 @@ nav{background:var(--white);border-bottom:3px solid var(--green);padding:0 2rem;
 .gallery-grid .g:hover img{transform:scale(1.04)}
 .gallery-grid .g .caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(14,30,14,0.8));color:var(--white);font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:1.5rem 0.85rem 0.6rem;opacity:0;transition:opacity 0.3s;}
 .gallery-grid .g:hover .caption{opacity:1}
-.contact-section{background:var(--white)}
+.contact-section{background:var(--bg-cream)}
 .contact-layout{display:grid;grid-template-columns:1.1fr 1.4fr;gap:5rem;align-items:start;}
 .contact-details{margin-top:2.5rem;display:flex;flex-direction:column;gap:0}
 .contact-row{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 0;border-bottom:1px solid var(--gray-200);}
 .contact-row:first-child{border-top:1px solid var(--gray-200)}
-.c-icon{width:42px;height:42px;border-radius:50%;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;margin-top:2px;}
 .c-text{font-size:0.85rem;color:var(--gray-600)}
 .c-text strong{display:block;font-size:0.95rem;font-weight:700;color:var(--gray-900);margin-bottom:3px}
 .c-text a{color:var(--green);font-weight:700;text-decoration:none}
 .c-text a:hover{color:var(--green-dark)}
-.free-est-pill{display:inline-flex;align-items:center;gap:0.5rem;background:var(--green-pale);border:1.5px solid var(--green);color:var(--green-dark);font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:0.5rem 1rem;border-radius:2px;margin-top:1.5rem;}
 .form-box{background:var(--gray-50);border:1px solid var(--gray-200);border-top:4px solid var(--green);border-radius:4px;padding:2.25rem;}
 .form-box h3{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:800;text-transform:uppercase;color:var(--gray-900);margin-bottom:0.4rem;}
 .form-box .form-intro{font-size:0.875rem;color:var(--gray-600);margin-bottom:1.75rem;line-height:1.6}
 .form-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .fg{margin-bottom:1rem}
 .fg label{display:block;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-600);margin-bottom:0.4rem;}
-.fg input,.fg select,.fg textarea{width:100%;padding:0.65rem 0.85rem;background:var(--white);border:1.5px solid var(--gray-200);border-radius:3px;font-family:'Barlow',sans-serif;font-size:0.9rem;color:var(--gray-900);outline:none;transition:border-color 0.2s;}
+.fg input,.fg select,.fg textarea{width:100%;padding:0.65rem 0.85rem;background:var(--bg-cream);border:1.5px solid var(--gray-200);border-radius:3px;font-family:'Barlow',sans-serif;font-size:0.9rem;color:var(--gray-900);outline:none;transition:border-color 0.2s;}
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--green)}
 .fg input::placeholder,.fg textarea::placeholder{color:var(--gray-400)}
 .fg textarea{resize:vertical;min-height:100px;line-height:1.6}
 .fg select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238a9186' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.9rem center;padding-right:2rem;}
-.contact-prefs{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.25rem;}
-.pref-btn{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:var(--gray-600);background:var(--white);border:1.5px solid var(--gray-200);border-radius:3px;padding:0.45rem 0.85rem;cursor:pointer;transition:border-color 0.18s,color 0.18s,background 0.18s;}
-.pref-btn:has(input:checked){border-color:var(--green);color:var(--green-dark);background:var(--green-pale);}
-.pref-btn input{accent-color:var(--green);width:13px;height:13px}
 .form-submit{width:100%;background:var(--green);color:var(--white);font-family:'Barlow',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border:none;border-radius:3px;padding:0.9rem;cursor:pointer;transition:background 0.18s;}
 .form-submit:hover{background:var(--green-dark)}
 .form-submit:disabled{background:var(--gray-400);cursor:not-allowed;}
 .form-note{font-size:0.75rem;color:var(--gray-400);text-align:center;margin-top:0.75rem}
 .form-success{display:none;text-align:center;padding:3rem 1.5rem}
-.form-success .s-check{width:64px;height:64px;border-radius:50%;background:var(--green-pale);border:3px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:1.75rem;margin:0 auto 1.25rem;}
+.form-success .s-check{width:64px;height:64px;border-radius:50%;background:var(--green-pale);border:3px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:1.75rem;margin:0 auto 1.25rem;color:var(--green)}
 .form-success h4{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:800;text-transform:uppercase;color:var(--green-dark);margin-bottom:0.5rem;}
 .form-success p{font-size:0.9rem;color:var(--gray-600);line-height:1.7}
 footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem 1.5rem}
 .footer-inner{max-width:1140px;margin:0 auto}
 .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,0.1);}
 .footer-brand .wm{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;text-transform:uppercase;color:var(--white);margin-bottom:0.75rem;}
-.footer-brand .wm span{color:var(--yellow)}
+.footer-brand .wm span{color:var(--bg-cream)}
 .footer-brand p{font-size:0.875rem;line-height:1.65;max-width:280px}
-.footer-brand a{color:var(--yellow);font-weight:700;text-decoration:none}
+.footer-brand a{color:var(--bg-cream);font-weight:700;text-decoration:none}
 .footer-col h5{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1rem;}
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
 .footer-col ul a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.875rem;transition:color 0.18s}
@@ -149,13 +299,14 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
 .hamburger.is-active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .hamburger.is-active span:nth-child(2){opacity:0}
 .hamburger.is-active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.nav-links.nav-open{display:flex!important;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--white);padding:5rem 2rem 2rem;gap:0;z-index:150;box-shadow:0 4px 20px rgba(0,0,0,0.15);overflow-y:auto;}
+.nav-links.nav-open{display:flex!important;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg-cream);padding:5rem 2rem 2rem;gap:0;z-index:150;box-shadow:0 4px 20px rgba(0,0,0,0.15);overflow-y:auto;}
 .nav-links.nav-open li a{display:block;padding:1rem 0;font-size:1.1rem;border-bottom:1px solid var(--gray-100);border-right:none!important;border-left:none!important;margin-bottom:-3px!important;}
 .nav-links.nav-open .nav-cta{margin:1rem 0 0;display:block;text-align:center;padding:0.85rem!important;}
 @media(max-width:960px){
   .nav-links{display:none}.hamburger{display:flex}
   .hero-content{padding:3rem 1.5rem}
   .about-layout,.contact-layout{grid-template-columns:1fr}
+  .transform-showcase{grid-template-columns:1fr}
   .about-img img{height:300px}
   .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
   .gallery-grid .g.big{grid-row:span 1}.gallery-grid .g img{height:200px}
@@ -167,6 +318,7 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
   .services-grid{grid-template-columns:1fr}
   .gallery-grid{grid-template-columns:1fr}.gallery-grid .g img{height:220px}
   .trust-strip{gap:1.25rem}section{padding:3.5rem 1.25rem}.topbar{display:none}
+  .slider-container{height:280px}
 }
 </style>
 </head>
@@ -175,24 +327,24 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
 <div class="topbar">
   <span>📍 Serving Edmonton & Surrounding Areas</span>
   <div class="topbar-right">
-    <a href="tel:7808857119">780-885-7119</a>
+    <a href="tel:7808857119">780 885 7119</a>
   </div>
 </div>
 
 <nav>
   <a href="#" class="nav-brand" id="nav-logo-area">
     <img src="images/logo.png" alt="Ironroot Landscaping" style="height:44px"> 
-      <div class="nav-wordmark">
-        <span class="nav-wordmark-top">Ironroot</span>
-        <span class="nav-wordmark-sub">Landscaping</span>
-      </div>
+    <div class="nav-wordmark">
+      <span class="nav-wordmark-top">Ironroot</span>
+      <span class="nav-wordmark-sub">Landscaping</span>
     </div>
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
+    <li><a href="#transformations">Transformations</a></li>
     <li><a href="#gallery">Our Work</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#contact" class="nav-cta">Free Estimate</a></li>
+    <li><a href="#contact" class="nav-cta">Needing a quote?</a></li>
   </ul>
   <button class="hamburger" aria-label="Menu" onclick="toggleNav(this)">
     <span></span><span></span><span></span>
@@ -201,15 +353,15 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
 
 <div class="hero">
   <div class="hero-bg">
-    <img src="images/background.jpg" alt="Beautiful residential landscaped lawn">
+    <img src="images/after-back-deck.webp" alt="Beautiful residential landscaped yard with custom deck work">
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1>Edmonton&#39;s Yard <span>Transformation</span> Experts</h1>
-    <p class="hero-sub">Reliable, affordable landscaping services. Sod installs, yard cleanups & more. Call or text for a free quote.</p>
+    <p class="hero-sub">Reliable, affordable landscaping services. Sod installs, yard cleanups and more. Call or text for a custom quote.</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-hero">Get a Free Estimate</a>
-      <a href="tel:7808857119" class="hero-phone">780-885-7119</a>
+      <a href="#contact" class="btn-hero">Needing a quote?</a>
+      <a href="tel:7808857119" class="hero-phone">780 885 7119</a>
     </div>
   </div>
 </div>
@@ -228,14 +380,76 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
     <p class="section-body">From a simple patch job to a full yard refresh, we do it all with care and at a price that makes sense.</p>
     <div class="services-grid">
       <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>
+        </div>
         <h3>Sod Installation</h3>
         <p>New lawns or patch repairs. We prep the soil, lay fresh sod, and leave you with lush green grass from day one.</p>
         <a href="#contact" class="service-link">Get a Quote →</a>
       </div>
       <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+        </div>
         <h3>Yard Cleanups</h3>
-        <p>Spring and fall cleanups, leaf removal, and debris hauling. We'll leave your property looking neat and tidy.</p>
+        <p>Spring and fall cleanups, leaf removal, and debris hauling. We will leave your property looking neat and tidy.</p>
         <a href="#contact" class="service-link">Get a Quote →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section transformations-section" id="transformations">
+  <div class="section-center">
+    <p class="section-label">Real Transformations</p>
+    <h2 class="section-title">See The <span>Before & After</span></h2>
+    <p class="section-body">Drag the slider on the main project image to watch the workspace transform from raw prep ground to the finished clean deck installation.</p>
+    
+    <div class="transform-showcase">
+      <div class="slider-container" id="deckSlider">
+        <div class="slider-img img-before">
+          <img src="images/back-deck weed control.webp" alt="Back deck space before landscaping work">
+        </div>
+        <div class="slider-img img-after" id="afterImgWrapper">
+          <img src="images/after-back-deck.webp" alt="Finished beautiful back deck landscaping install">
+        </div>
+        <div class="badge-before">Before</div>
+        <div class="badge-after">After</div>
+        <div class="slider-handle" id="sliderHandle">
+          <div class="slider-button">↔</div>
+        </div>
+      </div>
+
+      <div class="transform-side-grid">
+        <div class="transform-card">
+          <div class="transform-thumb">
+            <img src="images/before edging gravel.webp" alt="Gravel path before detailing edges">
+            <div class="badge-before" style="font-size:0.6rem; padding: 0.2rem 0.4rem;">Before</div>
+          </div>
+          <div class="transform-thumb">
+            <img src="images/edging-gravel.webp" alt="Finished gravel layout and clean lawn edge">
+            <div class="badge-after" style="font-size:0.6rem; padding: 0.2rem 0.4rem;">After</div>
+          </div>
+          <div class="transform-card-meta">
+            <h4>Clean Gravel Edging</h4>
+            <p>Removed embedded sod weeds, graded the perimeter alignment, and set stable stone borders with clean separation layout lines.</p>
+          </div>
+        </div>
+
+        <div class="transform-card">
+          <div class="transform-thumb">
+            <img src="images/before%20front%20yard.webp" alt="Yard workspace during tarp protective setup">
+            <div class="badge-before" style="font-size:0.6rem; padding: 0.2rem 0.4rem;">Prep</div>
+          </div>
+          <div class="transform-thumb">
+            <img src="images/finished front yard.webp" alt="Sod placement and complete front yard grading look">
+            <div class="badge-after" style="font-size:0.6rem; padding: 0.2rem 0.4rem;">Result</div>
+          </div>
+          <div class="transform-card-meta">
+            <h4>Sod Layout & Structural Grading</h4>
+            <p>From extensive site preparation barriers to final lush sod placements across main property structures.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -270,12 +484,35 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
       <div>
         <p class="section-label">Why Choose Us</p>
         <h2 class="section-title">Honest Work.<br><span>Fair Prices.</span></h2>
-        <p class="section-body">We're a local Edmonton landscaping crew that takes pride in every job. Whether it's your front lawn or your entire backyard, we treat your property with the same care we'd give our own.</p>
+        <p class="section-body">We are a local Edmonton landscaping crew that takes pride in every job. Whether it is your front lawn or your entire backyard, we treat your property with the same care we would give our own.</p>
         <div class="pillars">
-          <div class="pillar-row"><div><h4>Affordable Pricing</h4><p>Competitive rates with clear, upfront quotes. No surprises when the job is done.</p></div></div>
-          <div class="pillar-row"><div><h4>Fast & Reliable</h4><p>We show up when we say we will and get the work done right the first time.</p></div></div>
-          <div class="pillar-row"><div><h4>Attention to Detail</h4><p>Every edge, every grade and every rock placed with care and intention.</p></div></div>
-          <div class="pillar-row"><div><h4>Free Estimates</h4><p>Call, text, or fill out our form. We'll get back to you fast with a no-obligation quote.</p></div></div>
+          <div class="pillar-row">
+            <div class="pillar-icon2">
+              <svg viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+            </div>
+            <div>
+              <h4>Affordable Pricing</h4>
+              <p>Competitive rates with clear, upfront quotes. No surprises when the job is done.</p>
+            </div>
+          </div>
+          <div class="pillar-row">
+            <div class="pillar-icon2">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3L2 6"/><path d="m19 3 3 3"/><path d="M14 3h-4"/></svg>
+            </div>
+            <div>
+              <h4>Fast & Reliable</h4>
+              <p>We show up when we say we will and get the work done right the first time.</p>
+            </div>
+          </div>
+          <div class="pillar-row">
+            <div class="pillar-icon2">
+              <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div>
+              <h4>Attention to Detail</h4>
+              <p>Every edge, every grade and every rock placed with care and intention.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -285,8 +522,8 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
 <div class="cta-banner">
   <h2>Ready to Start Your <span>Project?</span></h2>
   <div class="cta-actions">
-    <a href="#contact" class="btn-cta">Request a Free Estimate</a>
-    <a href="tel:7808857119" class="btn-cta-outline">Call 780-885-7119</a>
+    <a href="#contact" class="btn-cta">Needing a quote?</a>
+    <a href="tel:7808857119" class="btn-cta-outline">Call 780 885 7119</a>
   </div>
 </div>
 
@@ -324,11 +561,11 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
     <div class="contact-layout">
       <div>
         <p class="section-label">Contact Us</p>
-        <h2 class="section-title">Get Your <span>Free Estimate</span></h2>
-        <p class="section-body">Fill out the form and we'll get back to you within a few hours. Or reach out directly, we're happy to answer any questions.</p>
+        <h2 class="section-title">Get Your <span>Custom Quote</span></h2>
+        <p class="section-body">Fill out the form and we will get back to you within a few hours. Or reach out directly, we are happy to answer any questions.</p>
         <div class="contact-details">
           <div class="contact-row">
-            <div class="c-text"><strong>Phone / Text</strong><a href="tel:7808857119">780-885-7119</a></div>
+            <div class="c-text"><strong>Phone / Text</strong><a href="tel:7808857119">780 885 7119</a></div>
           </div>
           <div class="contact-row">
             <div class="c-text"><strong>Service Area</strong>Edmonton & surrounding areas</div>
@@ -341,8 +578,8 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
 
       <div class="form-box">
         <div id="est-form">
-          <h3>Request a Free Estimate</h3>
-          <p class="form-intro">Fill out the form below and we'll get back to you with a quote. All fields marked with * are required.</p>
+          <h3>Request a Quote</h3>
+          <p class="form-intro">Fill out the form below and we will get back to you with a quote. All fields marked with * are required.</p>
           <div class="form-row2">
             <div class="fg">
               <label>First Name *</label>
@@ -355,7 +592,7 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
           </div>
           <div class="fg">
             <label>Phone Number *</label>
-            <input type="tel" id="phone" placeholder="780-123-4567" required>
+            <input type="tel" id="phone" placeholder="780 123 4567" required>
           </div>
           <div class="fg">
             <label>Email Address</label>
@@ -365,7 +602,7 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
             <label>Service Needed</label>
             <select id="service">
               <option value="">-- Select a service --</option>
-              <option>Sod Installation  New Lawn</option>
+              <option>Sod Installation New Lawn</option>
               <option>Sod Patch Repair</option>
               <option>Yard Cleanup (Spring/Fall)</option>
               <option>Multiple Services</option>
@@ -382,7 +619,7 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
         <div id="fs" class="form-success">
           <div class="s-check">✓</div>
           <h4>Message Sent!</h4>
-          <p>Thanks for reaching out. We'll get back to you shortly with your free estimate.<br><br>You can also call or text us directly at <strong>780-885-7119</strong>.</p>
+          <p>Thanks for reaching out. We will get back to you shortly with your custom quote.<br><br>You can also call or text us directly at <strong>780 885 7119</strong>.</p>
         </div>
       </div>
     </div>
@@ -394,8 +631,8 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
     <div class="footer-top">
       <div class="footer-brand">
         <div class="wm">Iron<span>root</span> Landscaping</div>
-        <p>Reliable, affordable yard services across Edmonton and surrounding areas. Sod installs, cleanups & more.</p>
-        <br><a href="tel:7808857119">780-885-7119</a>
+        <p>Reliable, affordable yard services across Edmonton and surrounding areas. Sod installs, cleanups and more.</p>
+        <br><a href="tel:7808857119">780 885 7119</a>
       </div>
       <div class="footer-col">
         <h5>Services</h5>
@@ -409,8 +646,8 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
         <ul>
           <li><a href="#about">About Us</a></li>
           <li><a href="#gallery">Our Work</a></li>
-          <li><a href="#contact">Free Estimate</a></li>
-          <li><a href="tel:7808857119">780-885-7119</a></li>
+          <li><a href="#contact">Get a Quote</a></li>
+          <li><a href="tel:7808857119">780 885 7119</a></li>
         </ul>
       </div>
     </div>
@@ -422,71 +659,14 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
 </footer>
 
 <script>
-function handleSubmit() {
-  var fn = document.getElementById('fname').value.trim();
-  var ln = document.getElementById('lname').value.trim();
-  var ph = document.getElementById('phone').value.trim();
-  var em = document.getElementById('email').value.trim();
-  var svc = document.getElementById('service').value;
-  var msg = document.getElementById('msg').value.trim();
+const container = document.getElementById('deckSlider');
+const afterWrapper = document.getElementById('afterImgWrapper');
+const handle = document.getElementById('sliderHandle');
 
-  if (!fn || !ph) {
-    alert('Please enter your name and phone number.');
-    return;
-  }
+if(container && afterWrapper && handle) {
+  let isResizing = false;
 
-  var btn = document.getElementById('submitBtn');
-  var status = document.getElementById('formStatus');
-  btn.disabled = true;
-  btn.textContent = 'Sending...';
-  status.textContent = 'Sending your request...';
-
-  fetch('https://formspree.io/f/mjgdvrdr', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      name:    [fn, ln].filter(Boolean).join(' '),
-      phone:   ph,
-      email:   em || 'Not provided',
-      service: svc || 'Not specified',
-      message: msg || 'No additional details.'
-    })
-  })
-  .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, data: d }; }); })
-  .then(function(res) {
-    if (res.ok) {
-      document.getElementById('est-form').style.display = 'none';
-      document.getElementById('fs').style.display = 'block';
-    } else {
-      throw new Error(res.data.error || 'Submission failed');
-    }
-  })
-  .catch(function(err) {
-    btn.disabled = false;
-    btn.textContent = 'Send My Request';
-    status.textContent = '⚠️ Something went wrong. Please call us at 780-885-7119.';
-    console.error('Formspree error:', err);
-  });
-}
-
-function toggleNav(btn) {
-  var ul = document.querySelector('.nav-links');
-  var isOpen = ul.classList.contains('nav-open');
-  if (isOpen) {
-    ul.classList.remove('nav-open');
-    btn.classList.remove('is-active');
-  } else {
-    ul.classList.add('nav-open');
-    btn.classList.add('is-active');
-  }
-}
-
-document.querySelectorAll('.nav-links a').forEach(function(link) {
-  link.addEventListener('click', function() {
-    document.querySelector('.nav-links').classList.remove('nav-open');
-    document.querySelector('.hamburger').classList.remove('is-active');
-  });
-});
-</script>
-</body>
-</html>
+  function updateSlider(clientX) {
+    const rect = container.getBoundingClientRect();
+    const x = clientX - rect.left;
+    let
