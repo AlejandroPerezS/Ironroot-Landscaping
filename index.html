@@ -663,10 +663,99 @@ const container = document.getElementById('deckSlider');
 const afterWrapper = document.getElementById('afterImgWrapper');
 const handle = document.getElementById('sliderHandle');
 
-if(container && afterWrapper && handle) {
-  let isResizing = false;
-
-  function updateSlider(clientX) {
+if (container && afterWrapper && handle) {
+  function moveSlider(clientX) {
     const rect = container.getBoundingClientRect();
-    const x = clientX - rect.left;
-    let
+    let x = clientX - rect.left;
+    
+    // Constrain x within container bounds
+    if (x < 0) x = 0;
+    if (x > rect.width) x = rect.width;
+    
+    const percentage = (x / rect.width) * 100;
+    
+    // Update visual positions
+    afterWrapper.style.width = percentage + '%';
+    handle.style.left = percentage + '%';
+  }
+
+  // Mouse events
+  container.addEventListener('mousedown', (e) => {
+    moveSlider(e.clientX);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
+
+  function onMouseMove(e) { moveSlider(e.clientX); }
+  function onMouseUp() {
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  }
+
+  // Touch events
+  container.addEventListener('touchstart', (e) => {
+    moveSlider(e.touches[0].clientX);
+    document.addEventListener('touchmove', onTouchMove);
+    document.addEventListener('touchend', onTouchEnd);
+  });
+
+  function onTouchMove(e) { moveSlider(e.touches[0].clientX); }
+  function onTouchEnd() {
+    document.removeEventListener('touchmove', onTouchMove);
+    document.removeEventListener('touchend', onTouchEnd);
+  }
+}
+
+// Existing form handling code...
+function handleSubmit() {
+  const btn = document.getElementById('submitBtn');
+  const status = document.getElementById('formStatus');
+  const fn = document.getElementById('fname').value;
+  const ln = document.getElementById('lname').value;
+  const ph = document.getElementById('phone').value;
+  const em = document.getElementById('email').value;
+  const svc = document.getElementById('service').value;
+  const msg = document.getElementById('msg').value;
+
+  if (!fn || !ph) {
+    status.textContent = '⚠️ Please fill in all required fields.';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  // Integration logic remains the same as in your original file...
+  fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ name: [fn, ln].filter(Boolean).join(' '), phone: ph, email: em || 'Not provided', service: svc || 'Not specified', message: msg || 'No additional details.' })
+  })
+  .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, data: d }; }); })
+  .then(function(res) {
+    if (res.ok) {
+      document.getElementById('est-form').style.display = 'none';
+      document.getElementById('fs').style.display = 'block';
+    } else {
+      throw new Error(res.data.error || 'Submission failed');
+    }
+  })
+  .catch(function(err) {
+    btn.disabled = false;
+    btn.textContent = 'Send My Request';
+    status.textContent = '⚠️ Something went wrong. Please call us at 780-885-7119.';
+  });
+}
+
+function toggleNav(btn) {
+  var ul = document.querySelector('.nav-links');
+  var isOpen = ul.classList.contains('nav-open');
+  if (isOpen) {
+    ul.classList.remove('nav-open');
+    btn.classList.remove('is-active');
+  } else {
+    ul.classList.add('nav-open');
+    btn.classList.add('is-active');
+  }
+}
+</script>
