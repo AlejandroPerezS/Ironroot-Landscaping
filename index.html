@@ -658,6 +658,10 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:3rem 2rem
   </div>
 </footer>
 
+<div style="background:#0d0d0d;text-align:center;padding:0.6rem 1rem;font-family:'Barlow',sans-serif;font-size:0.72rem;color:rgba(255,255,255,0.35);letter-spacing:0.08em;">
+  Powered by <a href="https://timelessventures.ca" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.55);text-decoration:none;font-weight:600;transition:color 0.18s;" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Timeless Ventures</a>
+</div>
+
 <script>
 // --- Slider Logic ---
 const container = document.getElementById('deckSlider');
@@ -675,12 +679,33 @@ function moveSlider(clientX) {
   handle.style.left = percentage + '%';
 }
 
+// Mouse drag — only active while button is held down
+function onMouseMove(e) { moveSlider(e.clientX); }
+function onMouseUp() {
+  document.removeEventListener('mousemove', onMouseMove);
+  document.removeEventListener('mouseup', onMouseUp);
+}
 container.addEventListener('mousedown', (e) => {
-  document.addEventListener('mousemove', (e) => moveSlider(e.clientX));
-  document.addEventListener('mouseup', () => {
-    document.removeEventListener('mousemove', (e) => moveSlider(e.clientX));
-  }, { once: true });
+  e.preventDefault();
+  moveSlider(e.clientX);
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
 });
+
+// Touch drag — full swipe support across the whole slider
+function onTouchMove(e) {
+  e.preventDefault();
+  moveSlider(e.touches[0].clientX);
+}
+function onTouchEnd() {
+  container.removeEventListener('touchmove', onTouchMove);
+  container.removeEventListener('touchend', onTouchEnd);
+}
+container.addEventListener('touchstart', (e) => {
+  moveSlider(e.touches[0].clientX);
+  container.addEventListener('touchmove', onTouchMove, { passive: false });
+  container.addEventListener('touchend', onTouchEnd);
+}, { passive: true });
 
 // --- Formspree Logic ---
 function handleSubmit() {
@@ -731,3 +756,4 @@ function toggleNav(btn) {
   btn.classList.toggle('is-active');
 }
 </script>
+
