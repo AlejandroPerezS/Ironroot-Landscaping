@@ -711,38 +711,51 @@ container.addEventListener('touchstart', (e) => {
 function handleSubmit() {
   const btn = document.getElementById('submitBtn');
   const status = document.getElementById('formStatus');
-  
-  // Collect values
-  const data = {
-    name: document.getElementById('fname').value + ' ' + document.getElementById('lname').value,
-    phone: document.getElementById('phone').value,
-    email: document.getElementById('email').value,
-    service: document.getElementById('service').value,
-    message: document.getElementById('msg').value
-  };
+  const firstName = document.getElementById('fname').value.trim();
+  const lastName = document.getElementById('lname').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
 
-  if (!data.name || !data.phone) {
+  if (!firstName || !phone) {
     status.textContent = '⚠️ Please fill in all required fields (Name & Phone).';
     return;
   }
 
+  const data = new FormData();
+  data.append('name', [firstName, lastName].filter(Boolean).join(' '));
+  data.append('phone', phone);
+  data.append('service', document.getElementById('service').value);
+  data.append('message', document.getElementById('msg').value.trim());
+
+  // Formspree validates fields named "email", so do not send an empty optional email.
+  if (email) data.append('email', email);
+
   btn.disabled = true;
   btn.textContent = 'Sending...';
+  status.textContent = 'Sending your request...';
 
   fetch('https://formspree.io/f/mjgdvrdr', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(data)
+    headers: { 'Accept': 'application/json' },
+    body: data
   })
-  .then(response => {
-    if (response.ok) {
-      document.getElementById('est-form').style.display = 'none';
-      document.getElementById('fs').style.display = 'block';
-    } else {
-      throw new Error('Could not send message.');
+  .then(async response => {
+    if (!response.ok) {
+      let message = 'Could not send message.';
+      try {
+        const result = await response.json();
+        if (result && Array.isArray(result.errors) && result.errors.length) {
+          message = result.errors.map(error => error.message).join(' ');
+        }
+      } catch (_) {}
+      throw new Error(message);
     }
+
+    document.getElementById('est-form').style.display = 'none';
+    document.getElementById('fs').style.display = 'block';
   })
   .catch(error => {
+    console.error('Form submission error:', error);
     btn.disabled = false;
     btn.textContent = 'Send My Request';
     status.textContent = '⚠️ Submission failed. Please call us at 780-885-7119.';
