@@ -707,8 +707,8 @@ container.addEventListener('touchstart', (e) => {
   container.addEventListener('touchend', onTouchEnd);
 }, { passive: true });
 
-// --- Formspree Logic ---
-function handleSubmit() {
+// --- FormSubmit Logic ---
+async function handleSubmit() {
   const btn = document.getElementById('submitBtn');
   const status = document.getElementById('formStatus');
   const firstName = document.getElementById('fname').value.trim();
@@ -721,45 +721,47 @@ function handleSubmit() {
     return;
   }
 
-  const data = new FormData();
-  data.append('name', [firstName, lastName].filter(Boolean).join(' '));
-  data.append('phone', phone);
-  data.append('service', document.getElementById('service').value);
-  data.append('message', document.getElementById('msg').value.trim());
+  const payload = {
+    _subject: 'New Ironroot Landscaping quote request',
+    _template: 'table',
+    _captcha: 'false',
+    name: [firstName, lastName].filter(Boolean).join(' '),
+    phone: phone,
+    service: document.getElementById('service').value,
+    message: document.getElementById('msg').value.trim()
+  };
 
-  // Formspree validates fields named "email", so do not send an empty optional email.
-  if (email) data.append('email', email);
+  // An optional customer email becomes the reply-to address when supplied.
+  if (email) payload.email = email;
 
   btn.disabled = true;
   btn.textContent = 'Sending...';
   status.textContent = 'Sending your request...';
 
-  fetch('https://formspree.io/f/mjgdvrdr', {
-    method: 'POST',
-    headers: { 'Accept': 'application/json' },
-    body: data
-  })
-  .then(async response => {
-    if (!response.ok) {
-      let message = 'Could not send message.';
-      try {
-        const result = await response.json();
-        if (result && Array.isArray(result.errors) && result.errors.length) {
-          message = result.errors.map(error => error.message).join(' ');
-        }
-      } catch (_) {}
-      throw new Error(message);
+  try {
+    const response = await fetch('https://formsubmit.co/ajax/info@ironrootlandscaping.ca', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok || result.success === false) {
+      throw new Error(result.message || 'Could not send message.');
     }
 
     document.getElementById('est-form').style.display = 'none';
     document.getElementById('fs').style.display = 'block';
-  })
-  .catch(error => {
+  } catch (error) {
     console.error('Form submission error:', error);
     btn.disabled = false;
     btn.textContent = 'Send My Request';
     status.textContent = '⚠️ Submission failed. Please call us at 780-885-7119.';
-  });
+  }
 }
 
 // --- Navigation Toggle ---
